@@ -1,10 +1,4 @@
-/** 
-Author: Build Rise Shine with Nyros (BRS) 
-Created: 2023 
-Library / Component: Password generator modal
-Description: script for password generator logic
-(c) Copyright by BRS with Nyros. 
-**/
+
 
 // Password generator modal logic
 const open = document.getElementById('open')
