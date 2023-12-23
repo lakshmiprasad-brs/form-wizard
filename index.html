@@ -112,22 +112,14 @@
                         </small>
                         <input type="checkbox" onclick="toggle()" id="check"/> <span>Show
                           Password<span class="require">*</span></span>
-                        
-                          <label> Cities/towns </label>
-                          <div>
-                           <select id="sel_opt">
-                            <option value="a">select a  clity</option>
-                            <option value="a"> Hyderabad</option>
-                            <option value="b"> Vijayawada</option>
-                            <option value="c">kakinada</option>
-                            <option value="d">bangalore</option>
-                           </select>
-                           </div>
-                            <label id="sel_opt">Address</label>
-                            <textarea  cols="42"> </textarea>
-                           
 
-                      </div>
+                          <label for="city">City/Town:</label>
+                      <select id="city" name="city">
+                       <option value="">Select a city</option>
+                      </select>
+                      <label for="address">Address:</label>
+                      <textarea id="address" name="address"  cols="41"></textarea>
+                         </div>
                       
                       <div>
                         <button class="btn btn-primary" type="submit">Continue</button>

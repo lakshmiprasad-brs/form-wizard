@@ -1,6 +1,3 @@
-
-
-/*form validation logic*/
 window.onload = function () {
   let root = document.forms[0].elements
   let elementNumber
@@ -36,17 +33,23 @@ window.onload = function () {
 
       }
     }
-    else if(root[elementNumber].type=="submit")
-    {
+    if (root[elementNumber].type == 'textarea') {
+      root[elementNumber].onfocus = function () {
+        myFocus(this)
+      }
+      root[elementNumber].onkeyup = function () {
+        textarea(this)
+      }
+    } else if(root[elementNumber].type=="submit")
+     {
        root[elementNumber].onclick = function()
        {
         return validation(root);
        }
-    }
+     }
   }
 }
-//-----------------------------------------------------------------
-//onfocus function
+
 function myFocus(field) {
   let err = field.name + 'error'
   if (field.value.length == 0 && !document.getElementById(err)) {
@@ -57,8 +60,7 @@ function myFocus(field) {
     field.parentNode.appendChild(errorMsg)
   }
 }
-//-------------------------validations--------------------------------------------------------
-//text boxes validation
+
 function text(textValid) {
   let type = textValid.getAttribute('type')
   let show = textValid.name + 'error'
@@ -81,8 +83,7 @@ function text(textValid) {
     }
   }
 }
-//---------------------------------------------------------------------
-// Email validation function
+
 function email(emailValid) {
   let type = emailValid.getAttribute('type')
   let show = emailValid.name + 'error'
@@ -108,8 +109,42 @@ function email(emailValid) {
     }
   }
 }
-//---------------------------------------------------------------------------------
-//password validation
+function textarea(textareaValid) {
+  let type = textareaValid.getAttribute('name');
+  let show = textareaValid.name + 'error';
+
+  if (type == 'address') {
+      let textareaValue = textareaValid.value.trim();
+      if (textareaValue.length === 0) {
+          document.getElementById(show).innerHTML = '&#10008; Message cannot be empty';
+          document.getElementById(show).style.color = 'red';
+          textareaValid.style.border = '1px solid red';
+          return false;
+      } else {
+          document.getElementById(show).style.color = '#1758c1';
+          textareaValid.style.border = '1px solid #1758c1';
+          return true;
+      }
+  }
+}
+var selectElement = document.getElementById('city');
+
+selectElement.addEventListener('change', function () {
+
+  var selectedOption = selectElement.options[selectElement.selectedIndex];
+
+  var selectedValue = selectedOption.value;
+
+  if (selectedValue.trim() === '') {
+    selectElement.style.border = '1px solid red';
+  } else {
+    selectElement.style.border = '1px solid blue';
+  }
+});
+
+
+
+
 let parameters = {
   count: false,
   letters: false,
@@ -192,8 +227,6 @@ function password(pwdValid) {
   }
 }
  
-//----------------------------------------------------------------------------------------
-//Form Validation
 function validation(form) {
   const mail = document.getElementById('email')
   const mailID = mail.value
@@ -252,6 +285,18 @@ function validation(form) {
         x[i].style.border="1px solid red";
         return false
       }
+    } else if (type == 'textarea') {
+      if (x[i].value.length == 0) {
+        x[i].focus();
+        x[i].style.border = '1px solid red';
+        return false;
+      }
+    } else if (type == 'select-one') {
+      if (x[i].value.length == 0) {
+        x[i].focus();
+        x[i].style.border = '1px solid red';
+        return false;
+      }
     } else if (type == 'radio') {
       let l = x[i].parentNode.children.length
       for (let j = 0; j < l; j++) {
@@ -274,8 +319,7 @@ function validation(form) {
     }
   }
 }
-//----------------------------------------------------------------------------------------
-// Show password function
+
 function toggle() {
   let showPwd = document.getElementById('password')
   if (showPwd.type !== 'password') {
@@ -286,3 +330,19 @@ function toggle() {
     return true
   }
 }
+var cities = ["Hyderabad", "Bengalore", "kakinada", "Rajahmundry", "Chennai"];
+
+    function populateCities() {
+      var citySelect = document.getElementById('city');
+      for (var i = 0; i < cities.length; i++) {
+        var option = document.createElement('option');
+        option.value = cities[i];
+        option.text = cities[i];
+        citySelect.add(option);
+      }
+    }
+
+   
+    populateCities();
+
+    
