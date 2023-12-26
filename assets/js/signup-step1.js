@@ -330,7 +330,7 @@ function toggle() {
     return true
   }
 }
-var cities = ["Hyderabad", "Bengalore", "kakinada", "Rajahmundry", "Chennai"];
+var cities = ["Hyderabad", "Bengalore", "kakinada", "Rajahmundry", "vijayawada"];
 
     function populateCities() {
       var citySelect = document.getElementById('city');
